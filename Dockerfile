@@ -17,11 +17,11 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get purge --auto-remove -y curl \
  && rm -rf /src/*.deb \
- && groupadd -r pptruser \
- && useradd -r -g pptruser -G audio,video pptruser \
- && mkdir -p /home/pptruser/Downloads \
- && chown -R pptruser:pptruser /home/pptruser
-USER pptruser
-RUN mkdir -p /var/www/app
-WORKDIR /var/www/app
-COPY . /var/www/app
+ && groupadd -r docker \
+ && useradd -r -g docker -G audio,video docker \
+ && mkdir -p /home/docker/Downloads \
+ && mkdir -p /home/docker/www \
+ && chown -R docker:docker /home/docker
+USER docker
+WORKDIR /home/docker/www
+COPY . /home/docker/www
