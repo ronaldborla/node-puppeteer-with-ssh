@@ -8,4 +8,8 @@ RUN  apt-get update \
      && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
      && apt-get update \
      && apt-get install -y google-chrome-unstable ssh --no-install-recommends \
+     && sh -c 'echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list' \
+     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+     && apt update \
+     && apt install yarn \
      && rm -rf /var/lib/apt/lists/*
